@@ -1,0 +1,11 @@
+Consideram urmatoarea problema: se da un vector A de N elemente pe care se fac M astfel de operatii: ADUNA(st, dr, x) - toate elementele cu indicii intre st si dr (0 ≤ st ≤ dr < N) isi cresc valoarea cu x . La sfarsit trebuie sa se afiseze vectorul rezultat. In continuarea vom descrie o metoda care ne da un timp de rulare de O(1) pentru operatia ADUNA si O(N) pentru a determina toate elementele din vector. Vom construi un al doilea vector B de N+1 elemente, cu proprietatea ca Ai = B0 + B1 + ... Bi. Astfel, o operatie ADUNA(st, dr, x) devine:
+
+B[st] += x;
+B[dr + 1] -= x;
+Da, este chiar asa de simplu! Pentru a determina un element Ai vom aduna pur si simplu B0 + B1 + ... Bi. Incercati pe foaie sa vedeti cum funtioneaza. Aceasta ideea poate fi extinsa si in doua dimensiuni, construind B astfel incat Ai,j = suma subtabloului din B cu coltul in (0, 0) si (i, j), astfel (pt. ADUNA(x1,y1,x2,y2,v)):
+
+B[x1][y1] += v;
+B[x1][y2 + 1] -= v;
+B[x2 + 1][y1] -= v;
+B[x2 + 1][y2 + 1] += v;
+Pe cazul general, daca vrem sa facem operatii in d dimensiuni vom avea o complexitate O(2d). Reamintesc ca aceasta metoda este eficienta doar cand se vrea afisata vectorul/matricea/etc. doar la sfarsitul operatiilor sau sunt foarte putine interogari ale valorilor elementelor, deoarece aflarea unui element este o operatie foarte ineficienta: O(i) pentru a afla valorile elementelor pana la pozitia i.
